@@ -1,0 +1,72 @@
+Documentação do Projeto de Super-Heróis
+Introdução:
+
+Este projeto consiste na criação de uma aplicação web em PHP para gerenciar super-heróis de histórias em quadrinhos. O projeto envolve a criação de um CRUD (Create, Read, Update, Delete) completo para super-heróis.
+Etapa 1: Configuração do Ambiente
+
+1.1. Preparação do Ambiente PHP:
+
+    Instalação do PHP.
+    Configuração do Apache (ou outro servidor web).
+    Configuração do MySQL (ou outro sistema de gerenciamento de banco de dados).
+
+1.2. Criação do Banco de Dados:
+
+    Criação de um banco de dados para armazenar informações sobre super-heróis.
+    Configuração do phpMyAdmin (opcional).
+
+1.3. Configuração do WordPress (Opcional):
+
+    Verificação da possibilidade de implementar a aplicação no WordPress.
+    Avaliação das necessidades do cliente para integração com o WordPress.
+
+Etapa 2: Desenvolvimento da Aplicação
+
+2.1. Criação de Páginas PHP:
+
+    Criação de páginas PHP para as operações CRUD (create, read, update, delete).
+    Estruturação da interface do usuário.
+
+2.2. Criação da Tabela no Banco de Dados:
+
+    Criação da tabela no banco de dados para armazenar informações dos super-heróis.
+
+2.3. Implementação das Funcionalidades:
+
+    Desenvolvimento das funcionalidades de adicionar, listar, atualizar e deletar super-heróis.
+
+2.4. Validação de Dados (JavaScript):
+
+    Implementação de validação de dados no lado do cliente usando JavaScript.
+    Validação dos campos "nome" e "poder" com regras personalizadas.
+
+2.5. Botões de Navegação:
+
+    Adição de botões de navegação para facilitar a usabilidade nas páginas.
+
+2.6. Estilo CSS (Opcional):
+
+    Adição de um arquivo CSS para estilizar a aplicação.
+
+Etapa 3: Segurança e Finalização
+
+3.1. Segurança do PHP:
+
+    Implementação de medidas de segurança para proteger a aplicação contra ataques.
+
+3.2. Documentação (Ongoing):
+
+    Criação de documentação para o projeto, incluindo instruções de uso, validações e estrutura de código.
+
+3.3. Testes e Depuração:
+
+    Testes rigorosos da aplicação para garantir que funcione conforme o esperado.
+    Depuração de erros e problemas de usabilidade.
+
+3.4. Integração com WordPress (Opcional):
+
+    Caso a integração com o WordPress seja uma exigência, esta etapa incluirá a integração e testes finais.
+
+3.5. Implantação (Opcional):
+
+    Implantação da aplicação em um ambiente de produção, se necessário.
