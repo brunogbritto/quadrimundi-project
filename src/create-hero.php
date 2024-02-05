@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <a href="../public/index.php" class="btn btn-back">Voltar para a Página Inicial</a>
     <h1>Adicionar Novo Super-Herói</h1>
-    <form action="create-hero.php" method="post" onsubmit="return validateForm()">
+    <form action="" method="post" onsubmit="return validateForm()">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name"><br><br>
         

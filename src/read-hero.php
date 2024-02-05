@@ -8,6 +8,15 @@ try {
 } catch(PDOException $e) {
     echo "Erro: " . $e->getMessage();
 }
+
+// Lista os herois no banco de dados //
+try {
+    $query = "SELECT * FROM heroes";
+    $stmt = $conn->query($query);
+    $heroes = $stmt->fetchAll();
+} catch(PDOException $e) {
+    echo "Erro: " . $e->getMessage();
+}
 ?>
 
 <!DOCTYPE html>

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $updateStmt = $conn->prepare("UPDATE heroes SET name = ?, power = ? WHERE id = ?");
     $updateStmt->execute([$name, $power, $heroId]);
 
-    header("Location: read-hero.php"); // Redirecionar para a lista de heróis
+    header("Location: index.php"); // Redirecionar para a lista de heróis
 }
 ?>
 
