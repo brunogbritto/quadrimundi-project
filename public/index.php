@@ -97,7 +97,6 @@ try {
         <!-- Conteúdo das Abas -->
         <div class="tab-content">
             <div id="addHero" class="container tab-pane <?php echo $activeTab == 'addHero' ? 'active' : 'fade'; ?>"><br>
-                <!-- Correção no atributo action do formulário -->
                 <form action="index.php" method="post" onsubmit="return validateForm()">
                     <label for="name">Nome:</label>
                     <input type="text" id="name" name="name"><br><br>
