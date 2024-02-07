@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+    <div class="container mt-4 d-flex justify-content-end">
+    <a href="index.php?action=logout" class="btn btn-danger">Logout</a>
+    </div>
     <div class="container mt-4">
         <h1>Sistema de Gestão de Super-Heróis</h1>
 

@@ -1,59 +1,68 @@
 <?php
 session_start();
+include_once 'config/database.php';
 include_once 'controllers/HeroController.php';
+include_once 'controllers/UserController.php';
 
-// Cria uma instância do HeroController
-$controller = new HeroController();
+$heroController = new HeroController($conn);
+$userController = new UserController($conn);
 
-// Verifica se uma ação específica foi solicitada
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'addHero':
-            // Exibe a página para adicionar um novo herói
-            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                $controller->addHeroPage();
+        case 'editHero':
+        case 'updateHero':
+        case 'deleteHero':
+            // Verifica se o usuário está logado
+            if (!isset($_SESSION['user_id'])) {
+                header('Location: index.php?action=login');
+                exit;
             }
-            // Processa o formulário de adição de herói
-            else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $controller->addHero($_POST['name'], $_POST['power']);
+            
+            // Processa as ações de acordo com o método e a presença do ID
+            if ($_GET['action'] == 'addHero' && $_SERVER['REQUEST_METHOD'] == 'GET') {
+                $heroController->addHeroPage();
+            } elseif ($_GET['action'] == 'addHero' && $_SERVER['REQUEST_METHOD'] == 'POST') {
+                $heroController->addHero($_POST['name'], $_POST['power']);
+            } elseif ($_GET['action'] == 'editHero' && isset($_GET['id'])) {
+                $heroController->editHeroPage($_GET['id']);
+            } elseif ($_GET['action'] == 'deleteHero' && isset($_GET['id'])) {
+                $heroController->deleteHero($_GET['id']);
+            } elseif ($_GET['action'] == 'updateHero' && $_SERVER['REQUEST_METHOD'] == 'POST') {
+                $heroController->updateHero($_POST['id'], $_POST['name'], $_POST['power']);
             }
             break;
 
         case 'listHeroes':
-            // Lista todos os heróis
-            $controller->listHeroes();
+            $heroController->listHeroes();
             break;
-
-        case 'editHero':
-            if (isset($_GET['id']) && $_GET['id'] != '') {
-                $controller->editHeroPage($_GET['id']);
-            } else {
-                // Redirecione para a lista de heróis ou exiba uma mensagem de erro
-                header('Location: index.php?action=listHeroes');
-                // ou
-                // $_SESSION['error_message'] = "ID do Super-Herói não especificado.";
-                // header('Location: index.php?action=erro');
-            }
-            break;
-            
-        case 'updateHero': 
+        
+        case 'register':
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $controller->updateHero($_POST['id'], $_POST['name'], $_POST['power']);
+                $userController->register($_POST);
             } else {
-                header('Location: index.php?action=listHeroes');
+                include 'views/register_page.php';
             }
             break;
 
-        case 'deleteHero':
-            // Deleta um herói
-            $controller->deleteHero($_GET['id']);
+        case 'login':
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $userController->login($_POST['username'], $_POST['password']);
+            } else {
+                include 'views/login_page.php';
+            }
             break;
 
-        // Adicione mais casos conforme necessário
+        case 'logout':
+            session_destroy();
+            header('Location: index.php');
+            break;
+
+        default:
+            include 'views/home.php';
+            break;
     }
 } else {
-    // Ação padrão se nenhuma ação específica for solicitada
-    $controller->listHeroes();
+    include 'views/home.php';
 }
-
 ?>
