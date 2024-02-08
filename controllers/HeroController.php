@@ -19,9 +19,17 @@ class HeroController {
 
     // Método para lidar com a adição de um novo herói
     public function addHero($name, $power) {
-        $this->model->addHero($name, $power);
-        $_SESSION['success_message'] = "Super-Herói adicionado com sucesso!";
-        header('Location: index.php?action=addHero');
+        if (isset($_SESSION['user_id'])) {
+            $codAutor = $_SESSION['user_id'];
+            $this->model->addHero($name, $power, $codAutor); 
+            $_SESSION['success_message'] = "Super-Herói adicionado com sucesso!";
+            header('Location: index.php?action=addHero');
+            exit;
+        } else {
+            // Redirecionar para a página de login se o usuário não estiver logado
+            header('Location: index.php?action=login');
+            exit;
+        }
     }
 
     // Método para exibir a lista de heróis
@@ -30,6 +38,19 @@ class HeroController {
         $heroes = $this->model->getHeroes();
         $content = 'views/listHeroes.php';
         include 'views/layout.php';
+    }
+
+    public function listUserHeroes() {
+        if (isset($_SESSION['user_id'])) {
+            $codAutor = $_SESSION['user_id']; 
+            $heroes = $this->model->getHeroesByCodAutor($codAutor);
+            $content = 'views/listHeroes.php';
+            include 'views/layout.php';
+        } else {
+            // Redirecionar para login se o usuário não estiver logado
+            header('Location: index.php?action=login');
+            exit;
+        }
     }
 
     // Método para exibir a página de edição de herói
@@ -49,7 +70,8 @@ class HeroController {
     // Método para deletar um herói
     public function deleteHero($id) {
         $this->model->deleteHero($id);
-        header('Location: index.php?tab=listHeroes');
+        header('Location: index.php?action=listHeroes');
+        exit;
     }
 }
 ?>

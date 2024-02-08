@@ -66,30 +66,6 @@
                 <label for="tiktok">TikTok:</label>
                 <input type="text" class="form-control" id="tiktok" name="tiktok">
             </div>
-            <div class="form-group">
-                <label for="artImage">Imagem do Personagem:</label>
-                <input type="file" class="form-control-file" id="artImage" name="artImage">
-            </div>
-            <div class="form-group">
-                <label for="artAuthor">Nome do Autor da Arte:</label>
-                <input type="text" class="form-control" id="artAuthor" name="artAuthor">
-            </div>
-            <div class="form-group">
-                <label for="colorAuthor">Nome do Autor das Cores:</label>
-                <input type="text" class="form-control" id="colorAuthor" name="colorAuthor">
-            </div>
-            <div class="form-group">
-                <label for="artImage">Imagem do Personagem:</label>
-                <input type="file" class="form-control-file" id="artImage" name="artImage">
-            </div>
-            <div class="form-group">
-                <label for="artAuthor">Nome do Autor da Arte:</label>
-                <input type="text" class="form-control" id="artAuthor" name="artAuthor">
-            </div>
-            <div class="form-group">
-                <label for="colorAuthor">Nome do Autor das Cores:</label>
-                <input type="text" class="form-control" id="colorAuthor" name="colorAuthor">
-            </div>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
     </div>

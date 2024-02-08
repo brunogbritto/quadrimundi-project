@@ -18,8 +18,16 @@
                 <label for="password">Senha:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="alert alert-danger">
+                    <?php echo $_SESSION['error_message']; ?>
+                    <?php unset($_SESSION['error_message']); ?>
+                </div>
+            <?php endif; ?>
             <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
     </div>
 </body>
 </html>
+
+

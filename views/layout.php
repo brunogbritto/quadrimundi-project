@@ -29,7 +29,7 @@
             </ul>
 
         <!-- Inserção de Conteúdo Aqui -->
-        <?php include($content); ?>
+        <?php if (isset($content)) { include($content); } ?>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

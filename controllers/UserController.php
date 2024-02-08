@@ -13,9 +13,12 @@ class UserController {
         // Aqui você pode adicionar validação dos dados recebidos
 
         // Chama o método 'create' do modelo User
-        $result = $this->userModel->create($userData);
+        $userId = $this->userModel->create($userData);
 
-        if ($result) {
+        if ($userId) {
+            // Armazena o userId na sessão ou usa como codAutor
+            $_SESSION['user_id'] = $userId;
+            $_SESSION['codAutor'] = $userId; // Se desejar usar como codAutor
             // Se o usuário for criado com sucesso, redirecione ou dê feedback positivo
             $_SESSION['success_message'] = 'Cadastro realizado com sucesso!';
             header('Location: index.php?action=login');

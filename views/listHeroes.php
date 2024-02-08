@@ -15,10 +15,11 @@
                     <td><?php echo htmlspecialchars($hero['power']); ?></td>
                     <td class="text-center"> 
                         <a href="index.php?action=editHero&id=<?php echo $hero['id']; ?>">Editar</a> | 
-                        <a href="index.php?action=deleteHero&id=<?php echo $hero['id']; ?>">Excluir</a>
+                        <a href="index.php?action=deleteHero&id=<?php echo $hero['id']; ?>" onclick="return confirmDelete();">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
+    <script src="public/js/confirmDelete.js"></script>
     </table>
 </div>
