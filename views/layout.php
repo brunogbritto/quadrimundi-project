@@ -8,7 +8,11 @@
 </head>
 <body>
     <div class="container mt-4 d-flex justify-content-end">
-    <a href="index.php?action=logout" class="btn btn-danger">Logout</a>
+    <!-- Saudação -->
+    <?php if (isset($_SESSION['username'])): ?>
+        <p class="mr-4 pt-2">Olá, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
+    <?php endif; ?>
+    <div><a href="index.php?action=logout" class="btn btn-danger">Logout</a></div>
     </div>
     <div class="container mt-4">
         <h1>Sistema de Gestão de Super-Heróis</h1>
