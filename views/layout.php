@@ -7,11 +7,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+
     <div class="container mt-4 d-flex justify-content-end">
     <!-- Saudação -->
     <?php if (isset($_SESSION['username'])): ?>
         <p class="mr-4 pt-2">Olá, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
     <?php endif; ?>
+    <?php
+    // Verifica se o usuário está logado e se o perfil não está completo
+    if (isset($_SESSION['user_id']) && (!isset($_SESSION['profile_complete']) || $_SESSION['profile_complete'] == false)) {
+        echo '<a href="views/complete_profile.php" class="btn btn-warning mr-2 pt-2 mb-4">Completar Perfil</a>';
+    }
+    ?>
     <div><a href="index.php?action=logout" class="btn btn-danger">Logout</a></div>
     </div>
     <div class="container mt-4">

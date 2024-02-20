@@ -101,6 +101,15 @@ if (isset($_GET['action'])) {
             // Redireciona para a página inicial ou outra página padrão
             include 'views/home.php';
             break;
+
+        case 'completeProfile':
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $userController->completeProfile($_POST);
+            } else {
+                // Se não for uma solicitação POST, redireciona para a página de completar perfil
+                include 'views/complete_profile.php';
+            }
+            break;
     }
 } else {
     // Ação padrão se nenhuma ação específica for solicitada

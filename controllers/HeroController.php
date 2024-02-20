@@ -12,9 +12,15 @@ class HeroController {
 
     // Método para exibir a página de adição de herói
     public function addHeroPage() {
-        $activeTab = 'addHero';
-        $content = 'views/addHero.php';
-        include 'views/layout.php';
+        if (isset($_SESSION['user_id']) && $_SESSION['profile_complete']) {
+            $activeTab = 'addHero';
+            $content = 'views/addHero.php';
+            include 'views/layout.php';
+        } else {
+            // Redirecionar para completar perfil
+            header('Location: views/complete_profile.php');
+            exit;
+        }
     }
 
     // Método para lidar com a adição de um novo herói
