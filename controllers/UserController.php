@@ -10,7 +10,7 @@ class UserController {
 
        // Método para processar o registro simplificado
        public function register($userData) {
-        // Aqui você pode adicionar validação dos dados recebidos
+        // Aqui pode adicionar validação dos dados recebidos
 
         // Chama o método 'createBasic' do modelo User para registro simplificado
         $userId = $this->userModel->createBasic($userData);

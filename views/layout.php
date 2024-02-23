@@ -26,9 +26,15 @@
 
         <!-- Abas de Navegação -->
         <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link <?php echo $activeTab == 'addHero' ? 'active' : ''; ?>" href="index.php?action=addHero">Adicionar Super-Herói</a>
-            </li>
+        <?php if (isset($_SESSION['user_id']) && $_SESSION['profile_complete']): ?>
+        <li class="nav-item">
+            <a class="nav-link <?php echo $activeTab == 'addHero' ? 'active' : ''; ?>" href="index.php?action=addHero">Adicionar Super-Herói</a>
+        </li>
+        <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#" title="Complete seu perfil para adicionar um super-herói">Adicionar Super-Herói</a>
+        </li>
+        <?php endif; ?>
             <li class="nav-item">
                 <a class="nav-link <?php echo $activeTab == 'listHeroes' ? 'active' : ''; ?>" href="index.php?action=listHeroes">Listar Super-Heróis</a>
             </li>
