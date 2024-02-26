@@ -15,7 +15,7 @@
     <?php endif; ?>
     <?php
     // Verifica se o usuário está logado e se o perfil não está completo
-    if (isset($_SESSION['user_id']) && (!isset($_SESSION['profile_complete']) || $_SESSION['profile_complete'] == false)) {
+    if (isset($_SESSION['user_id']) && (!isset($_SESSION['profile_complete']) || $_SESSION['profile_complete'] === false)) {
         echo '<a href="views/complete_profile.php" class="btn btn-warning mr-2 pt-2 mb-4">Completar Perfil</a>';
     }
     ?>
@@ -26,7 +26,7 @@
 
         <!-- Abas de Navegação -->
         <ul class="nav nav-tabs">
-        <?php if (isset($_SESSION['user_id']) && $_SESSION['profile_complete']): ?>
+        <?php if (isset($_SESSION['user_id']) && (isset($_SESSION['profile_complete']) && $_SESSION['profile_complete'])): ?>
         <li class="nav-item">
             <a class="nav-link <?php echo $activeTab == 'addHero' ? 'active' : ''; ?>" href="index.php?action=addHero">Adicionar Super-Herói</a>
         </li>
