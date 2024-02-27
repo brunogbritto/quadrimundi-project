@@ -28,19 +28,19 @@
         <ul class="nav nav-tabs">
         <?php if (isset($_SESSION['user_id']) && (isset($_SESSION['profile_complete']) && $_SESSION['profile_complete'])): ?>
         <li class="nav-item">
-            <a class="nav-link <?php echo $activeTab == 'addHero' ? 'active' : ''; ?>" href="index.php?action=addHero">Adicionar Super-Herói</a>
+            <a class="nav-link <?php echo $activeTab == 'addCharacter' ? 'active' : ''; ?>" href="index.php?action=addCharacter">Adicionar Personagem</a>
         </li>
         <?php else: ?>
         <li class="nav-item">
-            <a class="nav-link disabled" href="#" title="Complete seu perfil para adicionar um super-herói">Adicionar Super-Herói</a>
+            <a class="nav-link disabled" href="#" title="Complete seu perfil para adicionar um super-herói">Adicionar Personagem</a>
         </li>
         <?php endif; ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo $activeTab == 'listHeroes' ? 'active' : ''; ?>" href="index.php?action=listHeroes">Listar Super-Heróis</a>
+                <a class="nav-link <?php echo $activeTab == 'listCharacters' ? 'active' : ''; ?>" href="index.php?action=listCharacters">Listar Personagens</a>
             </li>
             <?php if (isset($heroToEdit) && $heroToEdit != null): ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo $activeTab == 'editHero' ? 'active' : ''; ?>" href="index.php?action=editHero&id=<?php echo $heroToEdit['id']; ?>">Editar Super-Herói</a>
+                <a class="nav-link <?php echo $activeTab == 'editCharacter' ? 'active' : ''; ?>" href="index.php?action=editHero&id=<?php echo $heroToEdit['id']; ?>">Editar Super-Herói</a>
             </li>
             <?php endif; ?>
             </ul>

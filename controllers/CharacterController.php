@@ -1,20 +1,20 @@
 <?php
-include_once __DIR__ . '/../models/Hero.php'; // Inclui modelo Hero
+include_once __DIR__ . '/../models/Character.php'; // Inclui modelo Hero
 include_once __DIR__ . '/../config/database.php';  // Inclui a configuração do banco de dados
 
-class HeroController {
+class CharacterController {
     private $model;
 
     public function __construct() {
         global $conn;  // Usa a variável de conexão do banco de dados global
-        $this->model = new Hero($conn);  // Cria uma instância do modelo Hero com a conexão
+        $this->model = new Character($conn);  // Cria uma instância do modelo Hero com a conexão
     }
 
     // Método para exibir a página de adição de herói
-    public function addHeroPage() {
+    public function addCharacterPage() {
         if (isset($_SESSION['user_id']) && $_SESSION['profile_complete']) {
-            $activeTab = 'addHero';
-            $content = 'views/addHero.php';
+            $activeTab = 'addCharacter';
+            $content = 'views/addCharacter.php';
             include 'views/layout.php';
         } else {
             // Redirecionar para completar perfil
@@ -24,12 +24,12 @@ class HeroController {
     }
 
     // Método para lidar com a adição de um novo herói
-    public function addHero($name, $power) {
+    public function addCharacter($name, $power) {
         if (isset($_SESSION['user_id'])) {
             $codAutor = $_SESSION['user_id'];
-            $this->model->addHero($name, $power, $codAutor); 
-            $_SESSION['success_message'] = "Super-Herói adicionado com sucesso!";
-            header('Location: index.php?action=addHero');
+            $this->model->addCharacter($name, $power, $codAutor); 
+            $_SESSION['success_message'] = "Personagem adicionado com sucesso!";
+            header('Location: index.php?action=addCharacter');
             exit;
         } else {
             // Redirecionar para a página de login se o usuário não estiver logado
@@ -39,18 +39,18 @@ class HeroController {
     }
 
     // Método para exibir a lista de heróis
-    public function listHeroes() {
-        $activeTab = 'listHeroes';
-        $heroes = $this->model->getHeroes();
-        $content = 'views/listHeroes.php';
+    public function listCharacters() {
+        $activeTab = 'listCharacters';
+        $characters = $this->model->getCharacters();
+        $content = 'views/listCharacters.php';
         include 'views/layout.php';
     }
 
-    public function listUserHeroes() {
+    public function listUserCharacters() {
         if (isset($_SESSION['user_id'])) {
             $codAutor = $_SESSION['user_id']; 
-            $heroes = $this->model->getHeroesByCodAutor($codAutor);
-            $content = 'views/listHeroes.php';
+            $characters = $this->model->getCharactersByCodAutor($codAutor);
+            $content = 'views/listCharacters.php';
             include 'views/layout.php';
         } else {
             // Redirecionar para login se o usuário não estiver logado
@@ -60,23 +60,23 @@ class HeroController {
     }
 
     // Método para exibir a página de edição de herói
-    public function editHeroPage($id) {
-        $heroToEdit = $this->model->getHeroById($id);
-        $content = 'views/editHero.php';
+    public function editCharacterPage($id) {
+        $heroToEdit = $this->model->getCharacterById($id);
+        $content = 'views/editCharacter.php';
         include 'views/layout.php';
     }
 
     // Método para atualizar um herói
-    public function updateHero($id, $name, $power) {
-        $this->model->updateHero($id, $name, $power);
-        $_SESSION['success_message'] = "Super-Herói atualizado com sucesso!";
-        header('Location: index.php?action=listHeroes');
+    public function updateCharacter($id, $name, $power) {
+        $this->model->updateCharacter($id, $name, $power);
+        $_SESSION['success_message'] = "Personagem atualizado com sucesso!";
+        header('Location: index.php?action=listCharacters');
     }
 
     // Método para deletar um herói
-    public function deleteHero($id) {
-        $this->model->deleteHero($id);
-        header('Location: index.php?action=listHeroes');
+    public function deleteCharacter($id) {
+        $this->model->deleteCharacter($id);
+        header('Location: index.php?action=listCharacters');
         exit;
     }
 }

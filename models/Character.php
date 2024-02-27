@@ -1,5 +1,5 @@
 <?php
-class Hero {
+class Character {
     private $conn;
 
     public function __construct($db) {
@@ -7,28 +7,28 @@ class Hero {
     }
 
     // Método para buscar todos os heróis
-    public function getHeroes() {
+    public function getCharacters() {
         $query = "SELECT * FROM characters";
         $stmt = $this->conn->query($query);
         return $stmt->fetchAll();
     }
 
     // Método para buscar um herói específico pelo ID
-    public function getHeroById($id) {
+    public function getCharacterById($id) {
         $stmt = $this->conn->prepare("SELECT * FROM characters WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
 
     // Método para buscar heroi pelo codAutor
-    public function getHeroesByCodAutor($codAutor) {
+    public function getCharactersByCodAutor($codAutor) {
         $stmt = $this->conn->prepare("SELECT * FROM characters WHERE codAutor = ?");
         $stmt->execute([$codAutor]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Método para adicionar um novo herói
-    public function addHero($name, $power, $codAutor) {
+    public function addCharacter($name, $power, $codAutor) {
         $query = "INSERT INTO characters (name, power, codAutor) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$name, $power, $codAutor]);
@@ -36,7 +36,7 @@ class Hero {
     }
 
     // Método para atualizar um herói
-    public function updateHero($id, $name, $power) {
+    public function updateCharacter($id, $name, $power) {
         $query = "UPDATE characters SET name = ?, power = ? WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([$name, $power, $id]);
@@ -44,7 +44,7 @@ class Hero {
     }
 
     // Método para excluir um herói
-    public function deleteHero($id) {
+    public function deleteCharacter($id) {
         $stmt = $this->conn->prepare("DELETE FROM characters WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt;

@@ -20,7 +20,7 @@ class UserController {
             $_SESSION['user_id'] = $userId;
             // Feedback positivo e redirecionamento
             $_SESSION['success_message'] = 'Cadastro realizado com sucesso!';
-            header('Location: index.php?action=listHeroes');
+            header('Location: index.php?action=listCharacters');
         } else {
             // Feedback de erro
             $_SESSION['error_message'] = 'Falha no cadastro. Tente novamente.';
@@ -39,7 +39,7 @@ class UserController {
             // Feedback positivo e redirecionamento
             $_SESSION['profile_complete'] = true;
             $_SESSION['success_message'] = 'Perfil completo com sucesso!';
-            header('Location: index.php?action=listHeroes');
+            header('Location: index.php?action=listCharacters');
         } else {
             // Feedback de erro
             $_SESSION['error_message'] = 'Falha ao completar o perfil. Tente novamente.';
@@ -66,7 +66,7 @@ class UserController {
         }
 
         // Redirecionar para uma página, por exemplo, a lista de heróis
-        header('Location: index.php?action=listHeroes');
+        header('Location: index.php?action=listCharacters');
         exit;
     } else {
         // Se as credenciais estiverem incorretas, enviar de volta para a página de login com uma mensagem de erro

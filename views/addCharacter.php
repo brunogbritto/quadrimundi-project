@@ -1,14 +1,14 @@
 
 
-<div id="addHero" class="tab-pane active">
-    <form action="index.php?action=addHero" method="post" onsubmit="return validateForm()">
+<div id="addCharacter" class="tab-pane active">
+    <form action="index.php?action=addCharacter" method="post" onsubmit="return validateForm()">
         <label class="mt-4" for="name">Nome:</label>
         <input type="text" id="name" name="name"><br><br>
 
         <label for="power">Poder:</label>
         <input type="text" id="power" name="power"><br><br>
 
-        <input type="submit" value="Adicionar Super-Herói">
+        <input type="submit" value="Adicionar Personagem">
     </form>
 
     <?php if (isset($_SESSION['success_message'])): ?>

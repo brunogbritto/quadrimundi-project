@@ -1,5 +1,5 @@
 
-<form action="index.php?action=updateHero" method="post">
+<form action="index.php?action=updateCharacter" method="post">
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($heroToEdit['id']); ?>">
 
     <label for="name">Nome:</label>
@@ -8,6 +8,6 @@
     <label for="power">Poder:</label>
     <input type="text" id="power" name="power" value="<?php echo htmlspecialchars($heroToEdit['power']); ?>"><br><br>
 
-    <input type="submit" value="Atualizar Super-Herói">
+    <input type="submit" value="Atualizar Personagem">
 </form>
 
