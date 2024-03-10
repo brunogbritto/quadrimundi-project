@@ -13,13 +13,43 @@ $userController = new UserController($conn);
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'addCharacter':
-            // Exibe a página para adicionar um novo herói
+            // Exibe a página para adicionar um novo personagem
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $characterController->addCharacterPage();
             }
-            // Processa o formulário de adição de herói
+            // Processa o formulário de adição de personagem
             else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $characterController->addCharacter($_POST['name'], $_POST['power']);
+                // Recolha todos os dados do formulário e armazene em um array
+                $characterData = [
+                    'name' => $_POST['name'],
+                    'civil_identity' => $_POST['civil_identity'],
+                    'age' => $_POST['age'],
+                    'height' => $_POST['height'],
+                    'weight' => $_POST['weight'],
+                    'nationality' => $_POST['nationality'],
+                    'ethnicity' => $_POST['ethnicity'],
+                    'sexual_identity' => $_POST['sexual_identity'],
+                    'pcd' => $_POST['pcd'],
+                    'other_details' => $_POST['other_details'],
+                    'costume' => $_POST['costume'],
+                    'accessories' => $_POST['accessories'],
+                    'special_abilities' => $_POST['special_abilities'],
+                    'first_appearance' => $_POST['first_appearance'],
+                    'backstory' => $_POST['backstory'],
+                    'flg_super_heroi' => isset($_POST['flg_super_heroi']),
+                    'flg_anti_heroi' => isset($_POST['flg_anti_heroi']),
+                    'flg_super_vilao' => isset($_POST['flg_super_vilao']),
+                    'flg_adulto' => isset($_POST['flg_adulto']),
+                    'flg_terror' => isset($_POST['flg_terror']),
+                    'flg_infantil' => isset($_POST['flg_infantil']),
+                    'flg_ficcao_cientifica' => isset($_POST['flg_ficcao_cientifica']),
+                    'flg_manga' => isset($_POST['flg_manga']),
+                    'flg_comedia' => isset($_POST['flg_comedia']),
+                    // Suponha que 'codAutor' é o ID do usuário logado
+                    'codAutor' => $_SESSION['user_id'] 
+                ];
+
+                $characterController->addCharacter($characterData);
             }
             break;
 
