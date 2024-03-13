@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Bem-vindo ao Sistema de Gestão de Super-Heróis</h1>
+        <h1 class="text-center">Bem-vindo ao Sistema QuadriMundi de Gestão de Personagens</h1>
         <div class="row mt-4">
             <div class="col text-center">
                 <a href="index.php?action=login" class="btn btn-primary">Entrar</a>

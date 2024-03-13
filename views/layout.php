@@ -22,7 +22,7 @@
     <div><a href="index.php?action=logout" class="btn btn-danger">Logout</a></div>
     </div>
     <div class="container mt-4">
-        <h1>Sistema de Gestão de Super-Heróis</h1>
+        <h1>Sistema de Gestão de Personagens</h1>
 
         <!-- Abas de Navegação -->
         <ul class="nav nav-tabs">

@@ -12,7 +12,7 @@
             <?php foreach ($characters as $character): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($character['name']); ?></td>
-                    <td><?php echo htmlspecialchars($character['power']); ?></td>
+                    <td><?php echo htmlspecialchars($character['civil_identity']); ?></td>
                     <td class="text-center"> 
                         <a href="index.php?action=editCharacter&id=<?php echo $character['id']; ?>">Editar</a> | 
                         <a href="index.php?action=deleteCharacter&id=<?php echo $character['id']; ?>" onclick="return confirmDelete();">Excluir</a>
