@@ -122,8 +122,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'logout':
-            session_destroy();
-            header('Location: index.php');
+            $userController->logout();
             break;
 
         

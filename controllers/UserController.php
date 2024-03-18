@@ -56,6 +56,7 @@ class UserController {
         // Se a senha estiver correta, iniciar a sessão
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
+        $_SESSION['is_admin'] = $user['is_admin'];
 
         // Verifique se o perfil está completo
         // Assumindo que 'fullname' é um dos campos que define se o perfil está completo
@@ -76,9 +77,14 @@ class UserController {
     }
 }
 
-    // Método para processar logout (a ser implementado)
-    // ...
+public function logout() {
+    // Limpar a sessão
+    session_unset();
+    session_destroy();
 
-    // Outros métodos conforme necessário
+    // Redirecionar para a página de login ou para a página inicial
+    header('Location: index.php?action=login');
+    exit;
+}
 }
 ?>
