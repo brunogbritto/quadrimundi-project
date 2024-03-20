@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão de Super-Heróis</title>
+    <title>Gestão de Personagens</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -38,9 +38,9 @@
             <li class="nav-item">
                 <a class="nav-link <?php echo $activeTab == 'listCharacters' ? 'active' : ''; ?>" href="index.php?action=listCharacters">Listar Personagens</a>
             </li>
-            <?php if (isset($heroToEdit) && $heroToEdit != null): ?>
+            <?php if (isset($CharacterToEdit) && $CharacterToEdit != null): ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo $activeTab == 'editCharacter' ? 'active' : ''; ?>" href="index.php?action=editHero&id=<?php echo $heroToEdit['id']; ?>">Editar Super-Herói</a>
+                <a class="nav-link <?php echo $activeTab == 'editCharacter' ? 'active' : ''; ?>" href="index.php?action=editHero&id=<?php echo $CharacterToEdit['id']; ?>">Editar Super-Herói</a>
             </li>
             <?php endif; ?>
             </ul>

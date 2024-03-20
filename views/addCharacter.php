@@ -4,7 +4,7 @@
     <form action="index.php?action=addCharacter" method="post" onsubmit="return validateForm()">
             <!-- Nome do Personagem -->
             <div class="form-group">
-                <label for="name">Personagem:</label>
+                <label for="name">Nome do personagem:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
 
@@ -129,7 +129,7 @@
                 <label class="form-check-label" for="flg_terror">Terror</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="flg_comedia" name="flg_scomedia" value="1">
+                <input class="form-check-input" type="checkbox" id="flg_comedia" name="flg_comedia" value="1">
                 <label class="form-check-label" for="flg_comedia">Comédia</label>
             </div>
             <!-- Repita para os outros campos -->

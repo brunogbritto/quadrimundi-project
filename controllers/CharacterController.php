@@ -29,6 +29,19 @@ class CharacterController {
             // Adiciona o 'codAutor' com base no usuário logado
             $data['codAutor'] = $_SESSION['user_id'];
 
+        // Inicializa todas as flags como 0
+        $flagKeys = ['flg_super_heroi', 'flg_anti_heroi', 'flg_super_vilao', 'flg_adulto', 'flg_terror', 'flg_infantil', 'flg_ficcao_cientifica', 'flg_manga', 'flg_comedia'];
+        foreach ($flagKeys as $key) {
+            $data[$key] = 0;
+        }
+
+        // Sobrescreve com 1 se a flag estiver marcada no POST
+        foreach ($_POST as $key => $value) {
+            if (in_array($key, $flagKeys)) {
+                $data[$key] = 1;
+            }
+        }
+
             // Validação e Sanitização dos dados (importante!)
             // Você precisará implementar a lógica de validação e sanitização aqui.
 
@@ -49,6 +62,13 @@ class CharacterController {
             exit;
         }
     }
+
+    //Método para lidar com a exibição de detalhes do Character
+    public function showCharacterDetails($id) {
+        $character = $this->model->getCharacterById($id);
+        include 'views/characterDetails.php';
+    }
+
 
     // Método para exibir a lista de Characters
     public function listCharacters() {
@@ -78,12 +98,37 @@ class CharacterController {
         include 'views/layout.php';
     }
 
+
     // Método para atualizar um Character
-    public function updateCharacter($id, $name, $power) {
-        $this->model->updateCharacter($id, $name, $power);
-        $_SESSION['success_message'] = "Personagem atualizado com sucesso!";
+    public function updateCharacter() {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=login');
+            exit;
+        }
+    
+        // Verifica se todos os campos necessários estão presentes no $_POST
+        if (!isset($_POST['id'], $_POST['name'], $_POST['civil_identity'])) {
+            $_SESSION['error_message'] = "Dados incompletos para atualização.";
+            header('Location: index.php?action=editCharacter&id=' . $_POST['id']);
+            exit;
+        }
+    
+        // Chama o método do modelo para atualizar o personagem
+        $result = $this->model->updateCharacter($_POST);
+    
+        // Redireciona com uma mensagem apropriada
+        if ($result) {
+            $_SESSION['success_message'] = "Personagem atualizado com sucesso!";
+        } else {
+            $_SESSION['error_message'] = "Erro ao atualizar personagem.";
+        }
         header('Location: index.php?action=listCharacters');
+        exit;
     }
+    
+    
+    
+
 
     // Método para deletar um Character
     public function deleteCharacter($id) {

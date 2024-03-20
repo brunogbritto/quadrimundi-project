@@ -72,12 +72,12 @@ if (isset($_GET['action'])) {
             
         case 'updateCharacter': 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $characterController->updateCharacter($_POST['id'], $_POST['name'], $_POST['power']);
+                $characterController->updateCharacter($_POST);
             } else {
                 header('Location: index.php?action=listCharacters');
             }
             break;
-
+            
         case 'deleteCharacter':
             // Deleta um herói
             $characterController->deleteCharacter($_GET['id']);
@@ -137,6 +137,14 @@ if (isset($_GET['action'])) {
             } else {
                 // Se não for uma solicitação POST, redireciona para a página de completar perfil
                 include 'views/complete_profile.php';
+            }
+            break;
+
+        case 'showCharacter':
+            if (isset($_GET['id']) && $_GET['id'] != '') {
+                $characterController->showCharacterDetails($_GET['id']);
+            } else {
+                header('Location: index.php?action=error'); // Ou uma página de erro específica
             }
             break;
     }
