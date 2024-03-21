@@ -1,0 +1,9 @@
+# Impedir a listagem de diretórios
+
+Options -Indexes
+
+# Permitir acesso a todos os arquivos
+
+<Files \*>
+Require all granted
+</Files>

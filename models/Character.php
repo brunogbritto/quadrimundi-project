@@ -33,8 +33,8 @@ class Character {
                name, civil_identity, age, height, weight, nationality, ethnicity, sexual_identity, pcd, 
                other_details, costume, accessories, special_abilities, first_appearance, backstory, 
                codAutor, flg_super_heroi, flg_anti_heroi, flg_super_vilao, flg_adulto, flg_terror, 
-               flg_infantil, flg_ficcao_cientifica, flg_manga, flg_comedia
-           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+               flg_infantil, flg_ficcao_cientifica, flg_manga, flg_comedia, image
+           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
        
         $stmt = $this->conn->prepare($query);
             
@@ -63,7 +63,8 @@ class Character {
             $data['flg_infantil'],
             $data['flg_ficcao_cientifica'],
             $data['flg_manga'],
-            $data['flg_comedia']
+            $data['flg_comedia'],
+            $data['image']
         ]);
         
         return $stmt;

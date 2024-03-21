@@ -25,25 +25,58 @@ class CharacterController {
 
     // Método para lidar com a adição de um novo Character
     public function addCharacter($data) {
-        if (isset($_SESSION['user_id'])) {
-            // Adiciona o 'codAutor' com base no usuário logado
-            $data['codAutor'] = $_SESSION['user_id'];
+        $uploadError = false;
 
-        // Inicializa todas as flags como 0
-        $flagKeys = ['flg_super_heroi', 'flg_anti_heroi', 'flg_super_vilao', 'flg_adulto', 'flg_terror', 'flg_infantil', 'flg_ficcao_cientifica', 'flg_manga', 'flg_comedia'];
-        foreach ($flagKeys as $key) {
-            $data[$key] = 0;
-        }
-
-        // Sobrescreve com 1 se a flag estiver marcada no POST
-        foreach ($_POST as $key => $value) {
-            if (in_array($key, $flagKeys)) {
-                $data[$key] = 1;
+        // Verificar se o arquivo foi enviado sem erros
+        if (isset($_FILES['characterImage']) && $_FILES['characterImage']['error'] == UPLOAD_ERR_OK) {
+            // Verificar se o arquivo é uma imagem válida
+            if ($this->validateImage($_FILES['characterImage'])) {
+                // Obter um nome de arquivo único
+                $imageFileName = $this->createUniqueImageFilename($_FILES['characterImage']['name']);
+                
+                // Definir o caminho do diretório de uploads
+                $uploadPath = __DIR__ . '/../uploads/';
+                
+                // Verificar se o diretório de uploads existe, se não, criar
+                if (!is_dir($uploadPath)) {
+                    mkdir($uploadPath, 0755, true);
+                }
+                
+                // Mover a imagem para o diretório de uploads
+                if (move_uploaded_file($_FILES['characterImage']['tmp_name'], $uploadPath . $imageFileName)) {
+                    // Adicionar o nome do arquivo da imagem ao array de dados
+                    $data['image'] = $imageFileName;
+                } else {
+                    $_SESSION['error_message'] = "Houve um erro ao fazer o upload da imagem.";
+                    $uploadError = true;
+                }
+            } else {
+                $_SESSION['error_message'] = "O arquivo não é uma imagem válida ou é muito grande.";
+                $uploadError = true;
             }
         }
 
+        if (!$uploadError) {
+            // Adiciona o 'codAutor' com base no usuário logado (se estiver logado)
+            if (isset($_SESSION['user_id'])) {
+                $data['codAutor'] = $_SESSION['user_id'];
+            }
+
+            // Inicializa todas as flags como 0
+            $flagKeys = ['flg_super_heroi', 'flg_anti_heroi', 'flg_super_vilao', 'flg_adulto', 'flg_terror', 'flg_infantil', 'flg_ficcao_cientifica', 'flg_manga', 'flg_comedia'];
+            foreach ($flagKeys as $key) {
+                $data[$key] = 0;
+            }
+
+            // Sobrescreve com 1 se a flag estiver marcada no POST
+            foreach ($_POST as $key => $value) {
+                if (in_array($key, $flagKeys)) {
+                    $data[$key] = 1;
+                }
+            }
+
             // Validação e Sanitização dos dados (importante!)
-            // Você precisará implementar a lógica de validação e sanitização aqui.
+            // Implemente a lógica de validação e sanitização aqui.
 
             // Chama o método addCharacter do modelo
             $result = $this->model->addCharacter($data);
@@ -52,17 +85,11 @@ class CharacterController {
                 $_SESSION['success_message'] = "Personagem adicionado com sucesso!";
                 header('Location: index.php?action=listCharacters');
             } else {
-                // Tratar erro na inserção
                 $_SESSION['error_message'] = "Erro ao adicionar personagem.";
                 header('Location: index.php?action=addCharacter');
             }
-        } else {
-            // Redirecionar para a página de login se o usuário não estiver logado
-            header('Location: index.php?action=login');
-            exit;
         }
     }
-
     //Método para lidar com a exibição de detalhes do Character
     public function showCharacterDetails($id) {
         $character = $this->model->getCharacterById($id);
@@ -125,10 +152,6 @@ class CharacterController {
         header('Location: index.php?action=listCharacters');
         exit;
     }
-    
-    
-    
-
 
     // Método para deletar um Character
     public function deleteCharacter($id) {
@@ -136,5 +159,35 @@ class CharacterController {
         header('Location: index.php?action=listCharacters');
         exit;
     }
+
+    private function validateImage($image) {
+        // Tipos de arquivo permitidos
+        $allowedTypes = ['image/jpeg','image/jpg', 'image/png', 'image/gif'];
+        $fileType = mime_content_type($image['tmp_name']);
+    
+        // Verificar se o arquivo é uma imagem
+        if (!in_array($fileType, $allowedTypes)) {
+            return false;
+        }
+    
+        // Verificar o tamanho do arquivo - 5MB máximo
+        $maxSize = 5 * 1024 * 1024;
+        if ($image['size'] > $maxSize) {
+            return false;
+        }
+    
+        return true;
+    }
+    
+    private function createUniqueImageFilename($filename) {
+        // Extrair a extensão do arquivo
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    
+        // Gerar um nome de arquivo único para evitar sobreposição de arquivos
+        $uniqueName = uniqid('char_', true) . '.' . $ext;
+    
+        return $uniqueName;
+    }
+    
 }
 ?>

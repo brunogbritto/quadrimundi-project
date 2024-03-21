@@ -135,7 +135,7 @@
 
             </div>
 
-    <input type="submit" value="Atualizar Personagem">
+    <input class="mb-4" type="submit" value="Atualizar Personagem">
 </form>
 
 <script src="public/js/characterFlags.js"></script>

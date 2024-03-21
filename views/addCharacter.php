@@ -1,7 +1,7 @@
 
 
 <div id="addCharacter" class="tab-pane active">
-    <form action="index.php?action=addCharacter" method="post" onsubmit="return validateForm()">
+    <form action="index.php?action=addCharacter" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
             <!-- Nome do Personagem -->
             <div class="form-group">
                 <label for="name">Nome do personagem:</label>
@@ -132,7 +132,12 @@
                 <input class="form-check-input" type="checkbox" id="flg_comedia" name="flg_comedia" value="1">
                 <label class="form-check-label" for="flg_comedia">Comédia</label>
             </div>
-            <!-- Repita para os outros campos -->
+            <!-- Campo de Upload de Imagem -->
+            <div class="form-group mt-4 mb-4">
+                <label for="characterImage">Imagem do Personagem:</label>
+                <input type="file" class="form-control-file" id="characterImage" name="characterImage" accept="image/*">
+            </div>
+
             </div>
 
         <input class="mb-3" type="submit" value="Adicionar Personagem">

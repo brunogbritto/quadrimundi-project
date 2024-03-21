@@ -14,6 +14,12 @@
                 <?php echo renderFlagBadges($character); ?>
             </div>
 
+            <div class="text-center mt-5">
+                <?php if ($character && $character['image']): ?>
+                    <img src="/superheroes-project/uploads/<?php echo htmlspecialchars($character['image']); ?>" alt="Imagem do Personagem">
+                <?php endif; ?>
+            </div>
+
                 <h5 class="card-title mt-2"><?php echo htmlspecialchars($character['name']); ?></h5>
                 <p class="card-text"><strong>Identidade Civil:</strong> <?php echo htmlspecialchars($character['civil_identity']); ?></p>
                 <p class="card-text"><strong>Idade:</strong> <?php echo htmlspecialchars($character['age']); ?></p>
@@ -31,6 +37,7 @@
                 <p class="card-text"><strong>Breve Histórico:</strong> <?php echo htmlspecialchars($character['backstory']); ?></p>
                 <!-- Inclua mais campos conforme necessário -->
             </div>
+
         </div>
 
         <?php else: ?>

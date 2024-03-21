@@ -32,7 +32,7 @@
         </li>
         <?php else: ?>
         <li class="nav-item">
-            <a class="nav-link disabled" href="#" title="Complete seu perfil para adicionar um super-herói">Adicionar Personagem</a>
+            <a class="nav-link" href="#" title="Complete seu perfil para adicionar um super-herói">Adicionar Personagem</a>
         </li>
         <?php endif; ?>
             <li class="nav-item">
@@ -40,7 +40,7 @@
             </li>
             <?php if (isset($CharacterToEdit) && $CharacterToEdit != null): ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo $activeTab == 'editCharacter' ? 'active' : ''; ?>" href="index.php?action=editHero&id=<?php echo $CharacterToEdit['id']; ?>">Editar Super-Herói</a>
+                <a class="nav-link <?php echo $activeTab == 'editCharacter' ? 'active' : ''; ?>" href="index.php?action=editCharacter&id=<?php echo $CharacterToEdit['id']; ?>">Editar Personagem</a>
             </li>
             <?php endif; ?>
             </ul>
