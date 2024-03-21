@@ -1,5 +1,5 @@
 
-<form action="index.php?action=updateCharacter" method="post">
+<form action="index.php?action=updateCharacter" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($CharacterToEdit['id']); ?>">
 
             <!-- Nome do Personagem -->
@@ -132,6 +132,11 @@
                 <input class="form-check-input" type="checkbox" id="flg_comedia" name="flg_comedia" value="1" <?php echo $CharacterToEdit['flg_comedia'] ? 'checked' : ''; ?>>
                 <label class="form-check-label" for="flg_comedia">Comédia</label>
             </div>
+            <div class="form-group">
+                <label for="characterImage">Imagem do Personagem:</label>
+                <input type="file" class="form-control-file" id="characterImage" name="characterImage" accept="image/*">
+            </div>
+
 
             </div>
 

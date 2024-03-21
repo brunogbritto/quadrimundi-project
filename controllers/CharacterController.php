@@ -140,11 +140,40 @@ class CharacterController {
             exit;
         }
     
-        // Chama o método do modelo para atualizar o personagem
-        $result = $this->model->updateCharacter($_POST);
+        $data = $_POST; // Recolhe todos os dados do formulário
     
-        // Redireciona com uma mensagem apropriada
-        if ($result) {
+        // Processar a imagem, se houver uma nova sendo enviada
+        if (isset($_FILES['characterImage']) && $_FILES['characterImage']['error'] == UPLOAD_ERR_OK) {
+            if ($this->validateImage($_FILES['characterImage'])) {
+                $imageFileName = $this->createUniqueImageFilename($_FILES['characterImage']['name']);
+                $uploadPath = __DIR__ . '/../uploads/';
+    
+                // Remover a imagem antiga, se houver
+                $oldCharacter = $this->model->getCharacterById($data['id']);
+                if ($oldCharacter && $oldCharacter['image']) {
+                    $oldImagePath = $uploadPath . $oldCharacter['image'];
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+    
+                // Mover a nova imagem para o diretório de uploads
+                if (move_uploaded_file($_FILES['characterImage']['tmp_name'], $uploadPath . $imageFileName)) {
+                    $data['image'] = $imageFileName;
+                } else {
+                    $_SESSION['error_message'] = "Erro ao fazer upload da imagem.";
+                    header('Location: index.php?action=editCharacter&id=' . $data['id']);
+                    exit;
+                }
+            } else {
+                $_SESSION['error_message'] = "Arquivo não é uma imagem válida.";
+                header('Location: index.php?action=editCharacter&id=' . $data['id']);
+                exit;
+            }
+        }
+    
+        // Atualizar os dados do personagem no banco de dados
+        if ($this->model->updateCharacter($data)) {
             $_SESSION['success_message'] = "Personagem atualizado com sucesso!";
         } else {
             $_SESSION['error_message'] = "Erro ao atualizar personagem.";

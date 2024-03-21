@@ -97,7 +97,8 @@ class Character {
                     flg_infantil = :flg_infantil, 
                     flg_ficcao_cientifica = :flg_ficcao_cientifica, 
                     flg_manga = :flg_manga, 
-                    flg_comedia = :flg_comedia 
+                    flg_comedia = :flg_comedia,
+                    image = :image 
                 WHERE id = :id";
     
         $stmt = $this->conn->prepare($query);
@@ -127,6 +128,7 @@ class Character {
         $stmt->bindParam(':flg_ficcao_cientifica', $data['flg_ficcao_cientifica'], PDO::PARAM_INT);
         $stmt->bindParam(':flg_manga', $data['flg_manga'], PDO::PARAM_INT);
         $stmt->bindParam(':flg_comedia', $data['flg_comedia'], PDO::PARAM_INT);
+        $stmt->bindParam(':image', $data['image']);
         $stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
     
         return $stmt->execute();
