@@ -24,11 +24,11 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="height">Altura:</label>
-                    <input type="text" class="form-control" id="height" name="height">
+                    <input type="float" class="form-control" id="height" name="height">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="weight">Peso:</label>
-                    <input type="text" class="form-control" id="weight" name="weight">
+                    <input type="float" class="form-control" id="weight" name="weight">
                 </div>
             </div>
 

@@ -22,9 +22,9 @@
 
                 <h5 class="card-title mt-2"><?php echo htmlspecialchars($character['name']); ?></h5>
                 <p class="card-text"><strong>Identidade Civil:</strong> <?php echo htmlspecialchars($character['civil_identity']); ?></p>
-                <p class="card-text"><strong>Idade:</strong> <?php echo htmlspecialchars($character['age']); ?></p>
-                <p class="card-text"><strong>Altura:</strong> <?php echo htmlspecialchars($character['height']); ?></p>
-                <p class="card-text"><strong>Peso:</strong> <?php echo htmlspecialchars($character['weight']); ?></p>
+                <p class="card-text"><strong>Idade:</strong> <?php echo htmlspecialchars($character['age']); ?> anos</p>
+                <p class="card-text"><strong>Altura:</strong> <?php echo number_format($character['height'], 2, ',', ''); ?> m</p>
+                <p class="card-text"><strong>Peso:</strong> <?php echo number_format($character['weight'], 2, ',', ''); ?> kg</p>
                 <p class="card-text"><strong>Nacionalidade:</strong> <?php echo htmlspecialchars($character['nationality']); ?></p>
                 <p class="card-text"><strong>Etnia:</strong> <?php echo htmlspecialchars($character['ethnicity']); ?></p>
                 <p class="card-text"><strong>Identidade Sexual:</strong> <?php echo htmlspecialchars($character['sexual_identity']); ?></p>

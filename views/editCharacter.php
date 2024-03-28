@@ -24,11 +24,11 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="height">Altura:</label>
-                    <input type="text" class="form-control" id="height" name="height" value="<?php echo htmlspecialchars($CharacterToEdit['height']); ?>">
+                    <input type="float" class="form-control" id="height" name="height" value="<?php echo htmlspecialchars($CharacterToEdit['height']); ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="weight">Peso:</label>
-                    <input type="text" class="form-control" id="weight" name="weight" value="<?php echo htmlspecialchars($CharacterToEdit['weight']); ?>">
+                    <input type="float" class="form-control" id="weight" name="weight" value="<?php echo htmlspecialchars($CharacterToEdit['weight']); ?>">
                 </div>
             </div>
 
@@ -144,4 +144,4 @@
 </form>
 
 <script src="public/js/characterFlags.js"></script>
-
+<script src="public/js/validateForm.js"></script>

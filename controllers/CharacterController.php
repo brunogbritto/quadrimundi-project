@@ -78,6 +78,11 @@ class CharacterController {
             // Validação e Sanitização dos dados (importante!)
             // Implemente a lógica de validação e sanitização aqui.
 
+            $weight = str_replace(',', '.', $_POST['weight']);
+            $data['weight'] = floatval($weight);
+            $height = str_replace(',', '.', $_POST['height']);
+            $data['height'] = floatval($height);
+
             // Chama o método addCharacter do modelo
             $result = $this->model->addCharacter($data);
 
@@ -133,14 +138,13 @@ class CharacterController {
             exit;
         }
     
-        // Verifica se todos os campos necessários estão presentes no $_POST
         if (!isset($_POST['id'], $_POST['name'], $_POST['civil_identity'])) {
             $_SESSION['error_message'] = "Dados incompletos para atualização.";
             header('Location: index.php?action=editCharacter&id=' . $_POST['id']);
             exit;
         }
     
-        $data = $_POST; // Recolhe todos os dados do formulário
+        $data = $_POST; // Coleta todos os dados do formulário
     
         // Processar a imagem, se houver uma nova sendo enviada
         if (isset($_FILES['characterImage']) && $_FILES['characterImage']['error'] == UPLOAD_ERR_OK) {
@@ -148,18 +152,8 @@ class CharacterController {
                 $imageFileName = $this->createUniqueImageFilename($_FILES['characterImage']['name']);
                 $uploadPath = __DIR__ . '/../uploads/';
     
-                // Remover a imagem antiga, se houver
-                $oldCharacter = $this->model->getCharacterById($data['id']);
-                if ($oldCharacter && $oldCharacter['image']) {
-                    $oldImagePath = $uploadPath . $oldCharacter['image'];
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath);
-                    }
-                }
-    
-                // Mover a nova imagem para o diretório de uploads
                 if (move_uploaded_file($_FILES['characterImage']['tmp_name'], $uploadPath . $imageFileName)) {
-                    $data['image'] = $imageFileName;
+                    $data['image'] = $imageFileName; // Adiciona o novo nome da imagem aos dados a serem atualizados
                 } else {
                     $_SESSION['error_message'] = "Erro ao fazer upload da imagem.";
                     header('Location: index.php?action=editCharacter&id=' . $data['id']);
@@ -170,10 +164,23 @@ class CharacterController {
                 header('Location: index.php?action=editCharacter&id=' . $data['id']);
                 exit;
             }
+        } else {
+            // Se nenhuma nova imagem foi enviada, mantém a imagem atual (se existir)
+            $currentCharacter = $this->model->getCharacterById($_POST['id']);
+            if ($currentCharacter && isset($currentCharacter['image'])) {
+                $data['image'] = $currentCharacter['image'];
+            }
         }
+
+        $weight = str_replace(',', '.', $_POST['weight']);
+        $data['weight'] = floatval($weight);
+        $height = str_replace(',', '.', $_POST['height']);
+        $data['height'] = floatval($height);
     
-        // Atualizar os dados do personagem no banco de dados
-        if ($this->model->updateCharacter($data)) {
+        // Atualiza o personagem com os dados coletados
+        $result = $this->model->updateCharacter($data);
+    
+        if ($result) {
             $_SESSION['success_message'] = "Personagem atualizado com sucesso!";
         } else {
             $_SESSION['error_message'] = "Erro ao atualizar personagem.";
@@ -181,6 +188,7 @@ class CharacterController {
         header('Location: index.php?action=listCharacters');
         exit;
     }
+    
 
     // Método para deletar um Character
     public function deleteCharacter($id) {
