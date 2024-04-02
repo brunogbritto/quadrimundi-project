@@ -16,7 +16,7 @@
 
             <div class="text-center mt-5">
                 <?php if ($character && $character['image']): ?>
-                    <img src="/superheroes-project/uploads/<?php echo htmlspecialchars($character['image']); ?>" alt="Imagem do Personagem">
+                    <img src="/quadrimundi-project/uploads/<?php echo htmlspecialchars($character['image']); ?>" alt="Imagem do Personagem">
                 <?php endif; ?>
             </div>
 

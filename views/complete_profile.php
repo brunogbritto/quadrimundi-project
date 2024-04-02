@@ -8,7 +8,7 @@
 <body>
     <div class="container mt-5">
         <h2>Completar Perfil</h2>
-        <form action="/superheroes-project/index.php?action=completeProfile" method="post">
+        <form action="/quadrimundi-project/index.php?action=completeProfile" method="post">
             <div class="form-group">
                 <label for="fullname">Nome Completo:</label>
                 <input type="text" class="form-control" id="fullname" name="fullname" required>
