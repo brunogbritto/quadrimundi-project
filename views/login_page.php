@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="login-container bg-white rounded-xl">
         <h2>Login</h2>
         <form action="index.php?action=login" method="post">
             <div class="form-group">
@@ -24,8 +26,10 @@
                     <?php unset($_SESSION['error_message']); ?>
                 </div>
             <?php endif; ?>
-            <button type="submit" class="btn btn-primary">Entrar</button>
+            <p>Ainda não possui uma conta? <a href="index.php?action=register">Crie aqui.</a></p>
+            <button type="submit" class="btn custom-btn">Entrar</button>
         </form>
+        </div>
     </div>
 </body>
 </html>

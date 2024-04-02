@@ -3,12 +3,14 @@
 
 
 <div id="characterDetails" class="tab-pane active">
+    
     <div class="container mt-4">
         <?php if ($character): ?>
-            <h2>Detalhes do Personagem: <?php echo htmlspecialchars($character['name']); ?></h2>
+
 
             <div class="card mb-4">
             <div class="card-body">
+            <h2>Detalhes do Personagem: <?php echo htmlspecialchars($character['name']); ?></h2>
 
             <div class="flags">
                 <?php echo renderFlagBadges($character); ?>

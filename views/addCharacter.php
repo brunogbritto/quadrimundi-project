@@ -1,7 +1,15 @@
 
-
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicione seu personagem</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
 <div id="addCharacter" class="tab-pane active">
     <form action="index.php?action=addCharacter" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+            
             <!-- Nome do Personagem -->
             <div class="form-group">
                 <label for="name">Nome do personagem:</label>
@@ -140,7 +148,7 @@
 
             </div>
 
-        <input class="mb-3" type="submit" value="Adicionar Personagem">
+        <input class="btn custom-btn mb-3" type="submit" value="Adicionar Personagem">
     </form>
 
     <?php if (isset($_SESSION['success_message'])): ?>

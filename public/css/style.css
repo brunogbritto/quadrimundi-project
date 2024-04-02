@@ -1,3 +1,11 @@
+body {
+  background: url('../img/background.jpeg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .btn-back {
   display: inline-block;
   margin: 10px;
@@ -12,3 +20,29 @@
   background-color: #0056b3;
 }
 
+.login-container {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 50px;
+}
+
+.custom-btn {
+  background-color: #fffb29e5; 
+  color: black;
+}
+
+.custom-btn:hover {
+  background-color: #f5f100e5;
+}
+
+.layout-container {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 50px;
+  margin: auto;
+  max-width: 83%;
+}
+
+.form-container {
+  margin: 20px auto;
+}

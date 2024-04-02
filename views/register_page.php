@@ -5,9 +5,11 @@
         <meta charset="UTF-8">
         <title>Cadastro</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="public/css/style.css">
     </head>
     <body>
-        <div class="container mt-5">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="login-container bg-white rounded-xl">
             <h2>Cadastre-se</h2>
             <form action="index.php?action=register" method="post">
                 <div class="form-group">
@@ -22,10 +24,12 @@
                     <label for="email">E-mail:</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
+                <p>Possui uma conta? <a href="index.php?action=login">Acesse já.</a></p>
       
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="submit" class="btn custom-btn">Registrar</button>
             </form>
         </div>
+    </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

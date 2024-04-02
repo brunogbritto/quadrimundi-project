@@ -150,7 +150,7 @@ if (isset($_GET['action'])) {
     }
 } else {
     // Ação padrão se nenhuma ação específica for solicitada
-    include 'views/home.php';
+    header('Location: index.php?action=register');
 
 }
 

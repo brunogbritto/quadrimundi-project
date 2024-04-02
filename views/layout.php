@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Personagens</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
 
-    <div class="container mt-4 d-flex justify-content-end">
+    <div class="container mt-4 p-1 d-flex justify-content-end bg-white rounded">
     <!-- Saudação -->
     <?php if (isset($_SESSION['username'])): ?>
         <p class="mr-4 pt-2">Olá, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
@@ -21,7 +22,7 @@
     ?>
     <div><a href="index.php?action=logout" class="btn btn-danger">Logout</a></div>
     </div>
-    <div class="container mt-4">
+    <div class="container mt-4 bg-white rounded">
         <h1>Sistema de Gestão de Personagens</h1>
 
         <!-- Abas de Navegação -->
